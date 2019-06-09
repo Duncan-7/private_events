@@ -1,0 +1,14 @@
+<p><%= "Name: #{@event.name}" %></p>
+<p><%= "Location: #{@event.location}" %></p>
+<p><%= "Date: #{@event.date}" %></p>
+<p><%= "Host: #{@event.creator.name}" %></p>
+<p>Guests:</p>
+<% @attendees.each do |attendees| %>
+  <p><%= attendees.name %></p>
+<% end %>
+<% if !@attendees.include?(current_user) %>
+<%= form_for(:guestlist, url: attend_path) do |f| %>
+  <%= hidden_field_tag(:event_id, @event.id) %>
+  <p><%= f.submit "Attend" %></p>
+<% end %>
+<% end %>

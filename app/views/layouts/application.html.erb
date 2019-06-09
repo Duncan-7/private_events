@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <%= link_to(image_tag("private", height: 100, width: 100), root_path) %>
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
     <%= yield %>
+    <%= render 'layouts/navigation' %>
+    <% if logged_in? %>
+    <p><%= "#{current_user.name} is logged in" %></p>
+    <% else %>
+    <p>Noone is currently logged in</p>
+    <% end %>  
+
   </body>
 </html>

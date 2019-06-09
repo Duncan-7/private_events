@@ -1,0 +1,28 @@
+<p>
+  Events you're hosting:
+  <% @hosting_events.each do |event| %>
+    <p><%= link_to "#{event.name}", event_path(event.id) %></p>
+  <% end %>
+</p>
+<p>
+  Events you're attending:
+  <% @attending_events.each do |event| %>
+    <p><%= link_to "#{event.name}", event_path(event.id) unless @hosting_events.include?(event)%></p>
+  <% end %>
+</p>
+<p>
+  Events you've hosted:
+  <% @hosted_events.each do |event| %>
+    <p><%= link_to "#{event.name}", event_path(event.id) %></p>
+  <% end %>
+</p>
+
+<p>
+  Events you've attended:
+  <% @attended_events.each do |event| %>
+    <p><%= link_to "#{event.name}", event_path(event.id) unless @hosted_events.include?(event)%></p>
+  <% end %>
+</p>
+
+<%= @upcoming_events %>
+
